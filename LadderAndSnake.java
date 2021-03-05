@@ -1,4 +1,9 @@
 public class LadderAndSnake {
+		public static final int WinningPosition = 100;
+		public static final int NoPlay = 1;
+		public static final int Ladder = 2;
+		public static final int Snake = 3;
+
 		public static void Player() {
 			LadderAndSnake p1 = new LadderAndSnake();
 		}
@@ -6,24 +11,28 @@ public class LadderAndSnake {
 		public static void main(String[] args) {
 			LadderAndSnake.Player();
 			int position = 0;
-			int N0_PLAY = 1;
-			int LADDER = 2;
-			int SNAKE = 3;
-
-			double dieCheck = (Math.floor(Math.random() * 10) % 5) + 1;
+			int DiceRolled = 0;
+			int NewPosition = 0;
+			while (position <= WinningPosition) {
+				DiceRolled++;
+				int dieCheck = (int)(Math.floor(Math.random() * 10) % 5) + 1;
 					switch (dieCheck) {
-							case 1:
+							case NoPlay:
 								position = 0;
 								break;
-							case 2:
-								position = position++ + dieCheck;
+							case Ladder:
+								position = position + dieCheck;
+								DiceRolled++;
 								break;
-							case 3:
+							case Snake:
 								position--;
 								break;
 					}
+			NewPosition += position;
+			System.out.println("Player is in the position of: " + NewPosition);
+			}
 
-			System.out.println(position);
+			System.out.println(NewPosition);
 
 		}
 }
